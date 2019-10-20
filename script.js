@@ -6,7 +6,6 @@ let parentElement;
 
 function setupScrollBox() {
     parentElement.style = 'overflow:auto; height: 45vh;';
-    parentElement.addEventListener('scroll', (ev) => ev.preventDefault());
 }
 
 function getActiveElement() {
@@ -15,13 +14,20 @@ function getActiveElement() {
 }
 
 function scrollToElement(element) {
-    element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+    if (!element.offsetTop) debugger
+    parentElement.scroll({
+        top: element.offsetTop - 100,
+        behavior: 'smooth'
+      });
 }
 
 function run() {
     parentElement = document.getElementsByClassName('rc-InteractiveTranscript')[0];
     if (!parentElement) return;
 
+    let activeElement = getActiveElement();
+    if (!activeElement) return;
+
     setupScrollBox();
-    scrollToElement(getActiveElement());
+    scrollToElement(activeElement);
 }
