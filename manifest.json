@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "coursera-live-transcript",
+    "version": "0.1",
+    "browser_action": {
+        "default_icon": "icon-48.png"
+    },
+    "icons": {
+        "16": "icon-16.png",
+        "48": "icon-48.png",
+        "128": "icon-128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.coursera.org/learn/*"
+            ],
+            "js": [
+                "script.js"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}
